@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="leaflet-search-master/src/leaflet-search.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
+    <link href='plugin/leaflet-search-master/dist/leaflet.fullscreen.css' rel='stylesheet' />
+    <script src='plugin/leaflet-search-master/dist/leaflet-search.min.js'></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navigation">
+        <ul class="container">
+            <li class="headerTitle">
+                <ul class="humbuger">
+                    <li class="line1"></li>
+                    <li class="line2"></li>
+                    <li class="line3"></li>
+                </ul>
+                <h2 class="heading">Equity Bank Spatial Distribution</h2>
+            </li>  
+            <li class="logo">
+                <ul>
+                    <li>Download Equity Geodata</li>
+                    <li><img src="img/sm_series_logo__1557940135986 (1).png" alt=""></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="listBtns">
+            <li><a href="">All Design</a> </li>
+            <li><a href="">Poor Design</a></button></li>
+            <li> <a href="">Posted and closed bridges</a></li>
+            <li><a href="">Dashboard</a> </li>
+        </ul>
+    </nav>
+
+    <section class="work">
+        <div class="container">
+            <div class="sidebar">
+                <img src="img/BOBS-Logo.png" alt="">
+                <p class="p1">
+                    Federal law, outlined in the National 
+                    Bridge Inspection Standards (NBIS), 
+                    defines a bridge as a structure carrying
+                    traffic with a span greater than 20 feet
+                    and requires that all bridges be inspected every 
+                    two years to monitor and report condition ratings.
+                </p>
+                <img src="img/btidge1.jpg" alt="">
+                <p class="p2">
+                    Condition ratings are based on a 0-9 scale 
+                    and assigned for each culvert, or the deck,
+                    superstructure and substructure of each bridge.
+                </p>
+
+                <p class="p3">
+                    These ratings are recorded in the National 
+                    Bridge Inventory (NBI) database. Condition 
+                    ratings are an important tool for transportation 
+                    asset management, as they are used to identify 
+                    preventative maintenance needs, and to determine rehabilitation and 
+                    replacement projects that require funding.
+                </p>
+                <img class="img_table" src="img/Ratings__1502214501073__w370.png" alt="">
+            </div>
+            
+            <div class="miniNav">
+                <ul class="holders">
+                    <li><img src="/img/sm_series_logo__1557940135986 (1).png" alt=""></li> 
+                    <li><h2>Bridges In Michigan</h2></li>
+                </ul>
+                <h2>An MDOT Map Application</h2>
+                <ul class="listOfItems">
+                    <li><img src="img/list1.png" alt=""></li>
+                    <hr> 
+                    <li><img src="img/list2legend.png" alt=""></li>
+                    <hr> 
+                    <li><img src="img/list3about.png" alt=""></li>
+                </ul>
+
+            </div>
+            <div id="map">
+
+            </div>
+
+
+        </div>
+    </section>
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    </script>
+    <script src="main.js"></script>
+    <script src="constituencies.js"></script>
+    <script src="equity banks.js"></script>
+    <script src="leaflet-search-master/src/leaflet-search.js"></script>
+
+<script>
+    var equityBanks= L.geoJson(equity,{
+        onEachFeature: function(feature, layer){
+            layer.bindPopup(feature.properties.name);  
+  }
+}).addTo(map); 
+
+var constutency=L.geoJson(constituencies,{
+        onEachFeature: function(feature, layer){
+            layer.bindPopup(feature.properties.CONST_NAM);  
+  }
+  
+}).addTo(map);
+
+const searchContrl=new L.Control.Search({
+    layer: equityBanks,
+    zoom:16,
+    fadeAnimation:true,
+    zoomAnimation:true,
+    propertyName:"name"
+});
+
+map.addControl(searchContrl);
+</script>
+</body>
+</html>
